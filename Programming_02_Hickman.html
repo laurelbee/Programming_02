@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet PA Cities Map</title>
+
+  <!-- Include Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+</head>
+<body>
+
+  <!-- Create the map div -->
+  <div id="map" style="width: 800px; height: 500px;"></div>
+
+  <!-- Include Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <script>
+
+    // Map center and zoom level
+    var map = L.map('map').setView([40.5, -77], 8);
+
+    // Tile layer 
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	maxZoom: 20
+}).addTo(map);
+
+// Amazon Q Prompt:
+// Can you change this variable to Harriaburg, PA and 
+// include it's latitude and longitude? 
+// var Philly = { 
+//    name: 'Philadelphia', 
+//    lat: 39.9523, 
+//    lng: -75.1638, 
+//    population: 1582000 
+// }
+
+    // City data
+var Harrisburg = {
+  name: 'Harrisburg, PA',
+  lat: 40.273,
+  lng: -76.8756,
+  population: 50135
+};
+  
+// Amazon Q Prompt
+// Can you change this variable to Lancaster, PA and 
+// include it's latitude and longitude? 
+// var Philly = { 
+//    name: 'Philadelphia', 
+//    lat: 39.9523, 
+//    lng: -75.1638, 
+//    population: 1582000 
+// }
+
+var Lancaster = {
+  name: 'Lancaster, PA',
+  lat: 40.0412,
+  lng: -76.3059,
+  population: 57503
+};
+
+
+
+// Leaflet UI Layers
+    // Add circles
+       L.circleMarker([Harrisburg.lat, Harrisburg.lng], {
+        radius: Math.sqrt(Harrisburg.population)/10,
+        color: 'gold',
+        fillColor: 'blue',
+        weight: 6
+        
+        // Tooltip styling
+        }).bindTooltip ("<b>" + 'Name: ' + "</b>" + "<i>" + Harrisburg.name + "</i>" + "<br>" + "<b>" + 'Population: ' + "</b>" + "<i>" + Harrisburg.population + "</i>")
+      .addTo(map);
+    
+      // Add circles
+      L.circleMarker([Lancaster.lat, Lancaster.lng], {
+        radius:   Math.sqrt(Lancaster.population)/10,
+        color: 'red',
+        fillColor: 'blue',
+        weight: 6
+        
+        // Tooltip styling
+        }).bindTooltip ("<b>" + 'Name: ' + "</b>" + "<i>" + Lancaster.name  + "</i>" + "<br>" + "<b>" + 'Population: ' + "</b>" + "<i>" + Lancaster.population + "</i>")
+      .addTo(map);
+    
+    
+  </script>
+
+</body>
+</html>
+
